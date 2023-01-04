@@ -296,7 +296,7 @@ using QuestPDF.Drawing;
                                      columns.RelativeColumn();
                                      columns.RelativeColumn();
                                  });
-                                 
+                                 table.Cell().RowSpan(2).Column(1).Image("Logo_LoB_IT.bmp");
                                  table.Cell().Row(1).Column(4).Text("Leistungskarte").FontSize(16).SemiBold();
                                  table.Cell().Row(2).Column(4).BorderBottom(1).Text("Vereinbarung");
                                  table.Cell().Row(2).Column(3).BorderBottom(1);
@@ -547,10 +547,101 @@ using QuestPDF.Drawing;
 
 
 
-                            y.Item().Padding(30).BorderHorizontal(1);
 
-                            y.Item().Image(Placeholders.Image(200, 100));
-                            y.Item().Text("");
+                            //plan: tabelle mit 2 zeilen und 7 spalten
+                            // obere zeile bleibt leer
+                            //obere zeile bekommt in1,3,5,7 eine horizontallinie
+                            // 2,4,6 bekommen eine breite von 2-10
+                            // untere zeile bekommt inhalte ebefalls in dieser
+
+
+
+
+                            // aufteilung in 2 tabellen
+                            //zweite tabelle gleiches konzept andere anzahl
+                            //2 reihen 4 spalten
+                            //1,2,3 endsprechen der tabelle von oben
+                            // 4 bekommt ein leeres feld mit der restlichen breite
+                            //eventuell musss kene 4te erstellt werden
+
+
+
+
+
+
+
+
+
+
+                            y.Item().PaddingTop(55).Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(16);
+                                    columns.ConstantColumn(177);
+                                    columns.ConstantColumn(16);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(16);
+                                    columns.ConstantColumn(177);
+                                });
+
+                                table.Cell().Row(1).Column(1).BorderBottom(1);
+                                table.Cell().Row(2).Column(1).Text("Datum");
+
+                                table.Cell().Row(1).Column(2);
+                                table.Cell().Row(2).Column(2);
+
+                                table.Cell().Row(1).Column(3).BorderBottom(1);
+                                table.Cell().Row(2).Column(3).Text("Unterschrifft Führungskraft");
+
+                                table.Cell().Row(1).Column(4);
+                                table.Cell().Row(2).Column(4);
+
+                                table.Cell().Row(1).Column(5).BorderBottom(1);
+                                table.Cell().Row(2).Column(5).Text("Datum");
+
+                                table.Cell().Row(1).Column(6);
+                                table.Cell().Row(2).Column(6);
+
+                                table.Cell().Row(1).Column(7).BorderBottom(1);
+                                table.Cell().Row(2).Column(7).Text("Unterschrift Beschäftigter");
+
+                            });
+
+
+
+                            y.Item().PaddingTop(55).Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(16);
+                                    columns.ConstantColumn(177);
+                                    
+                                });
+
+                                table.Cell().Row(1).Column(1).BorderBottom(1);
+                                table.Cell().Row(2).Column(1).Text("Datum");
+
+                                table.Cell().Row(1).Column(2);
+                                table.Cell().Row(2).Column(2);
+
+                                table.Cell().Row(1).Column(3).BorderBottom(1);
+                                table.Cell().Row(2).Column(3).Text("Unterschrifft nächsthöhere/r Vorgesetzte/r");
+
+                            });
+
+
+
+
+
+
+
+
+
+
+;
 
 
 
