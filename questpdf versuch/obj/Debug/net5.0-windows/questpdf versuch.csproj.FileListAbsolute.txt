@@ -1,0 +1,7 @@
+D:\Documents\source\repos\questpdf versuch\questpdf versuch\obj\Debug\net5.0-windows\questpdf versuch.csproj.AssemblyReference.cache
+D:\Documents\source\repos\questpdf versuch\questpdf versuch\obj\Debug\net5.0-windows\questpdf_versuch.InvoiceModel.resources
+D:\Documents\source\repos\questpdf versuch\questpdf versuch\obj\Debug\net5.0-windows\questpdf versuch.csproj.GenerateResource.cache
+D:\Documents\source\repos\questpdf versuch\questpdf versuch\obj\Debug\net5.0-windows\questpdf versuch.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\source\repos\questpdf versuch\questpdf versuch\obj\Debug\net5.0-windows\questpdf versuch.AssemblyInfoInputs.cache
+D:\Documents\source\repos\questpdf versuch\questpdf versuch\obj\Debug\net5.0-windows\questpdf versuch.AssemblyInfo.cs
+D:\Documents\source\repos\questpdf versuch\questpdf versuch\obj\Debug\net5.0-windows\questpdf versuch.csproj.CoreCompileInputs.cache
