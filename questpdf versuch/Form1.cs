@@ -5,12 +5,7 @@ using QuestPDF.Infrastructure;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Drawing;
-
-
-
-
-
-
+    using System.ComponentModel.Design;
 
     public class InvoiceModel
     {
@@ -270,13 +265,11 @@ using QuestPDF.Drawing;
                 container2.Page(page2 =>
                 {
                     page2.Size(PageSizes.A4);
-                    page2.Margin(2, Unit.Centimetre);
-                    page2.PageColor(Colors.Grey.Lighten3);
-                    page2.DefaultTextStyle(y => y.FontSize(14));
+                    page2.Margin(1, Unit.Centimetre);
+                    page2.PageColor(Colors.White);
+                    page2.DefaultTextStyle(y => y.FontSize(12));
                     
-                    page2.Header().Height(100)
-                        .Text("Rechnung pre-design")
-                        .SemiBold().FontSize(36).FontColor(Colors.Blue.Medium);
+                  
                     page2.Content()
 
 
@@ -285,18 +278,307 @@ using QuestPDF.Drawing;
 
 
 
-                        .PaddingVertical(1, Unit.Centimetre)
+                        .PaddingVertical(5, Unit.Millimetre)
+
+
+
+
                         .Column(y =>
                         {
-                            y.Item().BorderHorizontal(1);
-                            y.Spacing(14);
-                            y.Item().AlignRight().Text("Leistungskarte");
-                            y.Item().AlignRight().Text("Vereinbarung");
-                            y.Item().BorderHorizontal(1);
-                            y.Item().Text(Placeholders.LoremIpsum());
-                            y.Item().Text("hier könnte ihre werbung stehen");
+
+                            y.Item().Background(Colors.Grey.Lighten1).Table(table =>
+                             {
+                                 table.ColumnsDefinition(columns =>
+                                 {
+                                     
+                                     columns.RelativeColumn();
+                                     columns.RelativeColumn();
+                                     columns.RelativeColumn();
+                                     columns.RelativeColumn();
+                                 });
+                                 
+                                 table.Cell().Row(1).Column(4).Text("Leistungskarte").FontSize(16).SemiBold();
+                                 table.Cell().Row(2).Column(4).BorderBottom(1).Text("Vereinbarung");
+                                 table.Cell().Row(2).Column(3).BorderBottom(1);
+                                 table.Cell().Row(2).Column(2).BorderBottom(1);
+                                 table.Cell().Row(2).Column(1).BorderBottom(1);
+
+                             });
+                            
+    
+
+
+
+
+                            
+                            y.Item().AlignRight().PaddingTop(5).Text("Stand: ~datum einfügen~");
+                            
+
+
+
+
+
+
+
+
+                            y.Item().Background(Colors.Grey.Lighten3).Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(180);
+                                    columns.ConstantColumn(180);
+                                    columns.ConstantColumn(180);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+                                    
+                                });
+
+
+                                table.Cell().Row(1).Column(1).Border(1).Text("Projekt:\n~Projektname~");
+                                table.Cell().Row(2).Column(1).Border(1).Text("Beschäftigte/r:\n~Name~");
+                                table.Cell().Row(3).Column(1).Border(1).Text("Leitung:\n~Name~");
+
+                                table.Cell().Row(1).Column(2).Border(1).Text("Gruppe:\n~Name~");
+                                table.Cell().Row(2).Column(2).Border(1).Text("Personalnummer:\n~Nummer~");
+                                table.Cell().Row(3).Column(2).Border(1).Text("Leistungsergebnis:\n~ergebnis~");
+
+                                table.Cell().Row(1).Column(3).Border(1).Text("Beurteilungszeitraum:\n~Datum~");
+                                table.Cell().Row(2).Column(3).Border(1).Text("Vereinbart am:\n~Datum~");
+                                table.Cell().Row(3).Column(3).Border(1).Text("Bewertung abgeschlossen am:\n~Datum~");
+                            });
+
+                            y.Item().PaddingBottom(5).Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                });
+                                
+                                table.Cell().Row(1).Column(1).PaddingTop(10).Text("Zielvereinbarung").FontSize(14).SemiBold();
+                                table.Cell().Row(1).Column(4).PaddingTop(10).Text("Gewichtung: ~XX%~").FontSize(14).SemiBold();
+
+                            });
+
+
+                            y.Item().Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(75);
+                                    columns.ConstantColumn(98);
+                                    columns.ConstantColumn(75);
+                                    columns.ConstantColumn(75);
+                                    columns.ConstantColumn(72);
+                                    columns.ConstantColumn(72);
+                                    columns.ConstantColumn(72);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+
+                                });
+
+
+                                table.Cell().Row(1).Column(1).Border(1).Background(Colors.Grey.Lighten3).Text("Bereich ");
+                                table.Cell().Row(2).Column(1).Border(1).Text("~Teamziel~\n ");
+                                table.Cell().Row(3).Column(1).Border(1).Text("~Teamziel~\n ");
+
+                                table.Cell().Row(1).Column(2).Border(1).Background(Colors.Grey.Lighten3).Text("Ziel ");
+                                table.Cell().Row(2).Column(2).Border(1).Text("");
+                                table.Cell().Row(3).Column(2).Border(1).Text(" ");
+
+                                table.Cell().Row(1).Column(3).Border(1).Background(Colors.Grey.Lighten3).Text("Gewichtung ");
+                                table.Cell().Row(2).Column(3).Border(1).Text(" ");
+                                table.Cell().Row(3).Column(3).Border(1).Text(" ");
+
+                                table.Cell().Row(1).Column(4).Border(1).Background(Colors.Grey.Lighten3).Text("Messgröße ");
+                                table.Cell().Row(2).Column(4).Border(1).Text(" ");
+                                table.Cell().Row(3).Column(4).Border(1).Text(" ");
+
+                                table.Cell().Row(1).Column(5).Border(1).Background(Colors.Grey.Lighten3).Text("Ziel(100%) ");
+                                table.Cell().Row(2).Column(5).Border(1).Text(" ");
+                                table.Cell().Row(3).Column(5).Border(1).Text(" ");
+
+                                table.Cell().Row(1).Column(6).Border(1).Background(Colors.Grey.Lighten3).Text("Ergebnis ");
+                                table.Cell().Row(2).Column(6).Border(1).Text(" ");
+                                table.Cell().Row(3).Column(6).Border(1).Text(" ");
+
+                                table.Cell().Row(1).Column(7).Border(1).Background(Colors.Grey.Lighten3).Text("Summe ");
+                                table.Cell().Row(2).Column(7).Border(1).Text(" ");
+                                table.Cell().Row(3).Column(7).Border(1).Text(" ");
+
+
+                            });
+
+
+                            y.Item().Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(467);
+                                    columns.ConstantColumn(72);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+
+
+                                });
+
+
+                                table.Cell().Row(1).Column(1).Border(1).AlignRight().Text("Zwichenergebniss ");
+                                table.Cell().Row(2).Column(1).Border(1).AlignRight().Text("Summe Leistungesbarungen (50%) ").SemiBold();
+                                
+
+                                table.Cell().Row(1).Column(2).Border(1).Text(" ");
+                                table.Cell().Row(2).Column(2).Border(1).Text(" ");
+                                
+
+
+                            });
+
+
+
+
+                            y.Item().PaddingBottom(5).Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                });
+
+                                table.Cell().Row(1).Column(1).PaddingTop(10).Text("Leistungsbewertung").FontSize(14).SemiBold();
+                                table.Cell().Row(1).Column(4).PaddingTop(10).Text("Gewichtung: ~XX%~").FontSize(14).SemiBold();
+
+                            });
+
+
+                            y.Item().Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(173);
+                                    columns.ConstantColumn(150);
+                                    columns.ConstantColumn(144);
+                                    columns.ConstantColumn(72);
+
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+
+
+
+                                });
+
+
+                                table.Cell().Row(1).Column(1).Border(1).Background(Colors.Grey.Lighten3).Text("Leistungskriterium ");
+                                table.Cell().Row(2).Column(1).Border(1).Text(" ");
+                                table.Cell().Row(3).Column(1).Border(1).Text(" ");
+                                table.Cell().Row(4).Column(1).Border(1).Text(" ");
+                                table.Cell().Row(5).Column(1).Border(1).Text(" ");
+
+
+                                table.Cell().Row(1).Column(2).Border(1).Background(Colors.Grey.Lighten3).Text("Gewichtung ");
+                                table.Cell().Row(2).Column(2).Border(1).Text(" ");
+                                table.Cell().Row(3).Column(2).Border(1).Text(" ");
+                                table.Cell().Row(4).Column(2).Border(1).Text(" ");
+                                table.Cell().Row(5).Column(2).Border(1).Text(" ");
+
+
+                                table.Cell().Row(1).Column(3).Border(1).Background(Colors.Grey.Lighten3).Text("Ergebnis ");
+                                table.Cell().Row(2).Column(3).Border(1).Text(" ");
+                                table.Cell().Row(3).Column(3).Border(1).Text(" ");
+                                table.Cell().Row(4).Column(3).Border(1).Text(" ");
+                                table.Cell().Row(5).Column(3).Border(1).Text(" ");
+
+
+                                table.Cell().Row(1).Column(4).Border(1).Background(Colors.Grey.Lighten3).Text("Summe ");
+                                table.Cell().Row(2).Column(4).Border(1).Text(" ");
+                                table.Cell().Row(3).Column(4).Border(1).Text(" ");
+                                table.Cell().Row(4).Column(4).Border(1).Text(" ");
+                                table.Cell().Row(5).Column(4).Border(1).Text(" ");
+
+
+
+
+
+                            });
+
+
+                            y.Item().Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(467);
+                                    columns.ConstantColumn(72);
+                                    columns.RelativeColumn(2);
+                                    columns.RelativeColumn(2);
+
+
+                                });
+
+
+                                table.Cell().Row(1).Column(1).Border(1).AlignRight().Text("Zwichenergebniss ");
+                                table.Cell().Row(2).Column(1).Border(1).AlignRight().Text("Summe Leistungesbarungen (50%) ").SemiBold();
+
+
+                                table.Cell().Row(1).Column(2).Border(1).Text(" ");
+                                table.Cell().Row(2).Column(2).Border(1).Text(" ");
+
+
+
+                            });
+
+
+
+
+
+
+
+
+
+
+                            y.Item().Padding(30).BorderHorizontal(1);
+
                             y.Item().Image(Placeholders.Image(200, 100));
                             y.Item().Text("");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
