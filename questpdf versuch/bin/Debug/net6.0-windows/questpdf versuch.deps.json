@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "questpdf versuch/1.0.0": {
         "dependencies": {
-          "QuestPDF": "2022.12.0"
+          "QuestPDF": "2022.12.1"
         },
         "runtime": {
           "questpdf versuch.dll": {}
@@ -54,15 +54,15 @@
           }
         }
       },
-      "QuestPDF/2022.12.0": {
+      "QuestPDF/2022.12.1": {
         "dependencies": {
           "SkiaSharp": "2.88.3",
           "SkiaSharp.HarfBuzz": "2.88.3"
         },
         "runtime": {
           "lib/net6.0/QuestPDF.dll": {
-            "assemblyVersion": "2022.12.0.0",
-            "fileVersion": "2022.12.0.0"
+            "assemblyVersion": "2022.12.1.0",
+            "fileVersion": "2022.12.1.0"
           }
         }
       },
@@ -147,12 +147,12 @@
       "path": "harfbuzzsharp.nativeassets.win32/2.8.2.3",
       "hashPath": "harfbuzzsharp.nativeassets.win32.2.8.2.3.nupkg.sha512"
     },
-    "QuestPDF/2022.12.0": {
+    "QuestPDF/2022.12.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tYYELnfk9myXRn6iwuSanpM6VCXpGMmIHL5QdkeGfZF4SWYmL8FvQYlOgIqXm1K3rsrLK1GPxh7B0afGt8nrEQ==",
-      "path": "questpdf/2022.12.0",
-      "hashPath": "questpdf.2022.12.0.nupkg.sha512"
+      "sha512": "sha512-ffXUX6kHvWEKQZpd9A9CJi4zgTo0KmFSVAJlsAIJNegmugTwvi14OnO+eR1e7Ncw0g9GkBn0yOv4mDgGgRuCmg==",
+      "path": "questpdf/2022.12.1",
+      "hashPath": "questpdf.2022.12.1.nupkg.sha512"
     },
     "SkiaSharp/2.88.3": {
       "type": "package",
