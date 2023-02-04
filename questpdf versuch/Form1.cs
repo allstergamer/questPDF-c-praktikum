@@ -510,7 +510,7 @@ using QuestPDF.Drawing;
 
 
 
-                            x.Item().PaddingTop(5).Text("Projektstatistik");
+                            x.Item().Padding(5).Text("Projektstatistik");
 
 
 
@@ -524,6 +524,39 @@ using QuestPDF.Drawing;
 
 
 
+
+                            x.Item().Padding(10).LineHorizontal(1);
+
+
+                            x.Item().AlignCenter().Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(125);
+                                    columns.ConstantColumn(125);
+                                    columns.ConstantColumn(125);
+                                    columns.ConstantColumn(125);
+
+                                });
+
+                                table.Cell().Row(1).Column(1).Text(" Placeholder 1:");
+                                table.Cell().Row(1).Column(2).Border(1).Text(" Erreichung");
+                                table.Cell().Row(1).Column(3).Border(1).Text(" Wert");
+                                table.Cell().Row(1).Column(4).Border(1).Text(" Beschreibung");
+
+                                table.Cell().Row(2).Column(1).Text(" Placeholder 2");
+                                table.Cell().Row(2).Column(2).Border(1).Text("  ");
+                                table.Cell().Row(2).Column(3).Border(1).Text("  ");
+                                table.Cell().Row(2).Column(4).Border(1).Text("  ");
+
+
+
+
+
+                            });
+
+                            x.Item().Padding(10).LineHorizontal(1);
+                            x.Item().Text("Zielvereinbarungsuebersicht.pdf");
 
 
 
@@ -550,53 +583,6 @@ using QuestPDF.Drawing;
 .GeneratePdf("01_zusammenfassung.pdf");
  
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -926,6 +912,12 @@ using QuestPDF.Drawing;
 
                             });
 
+
+
+
+
+
+
                         });
 
                     page2.Footer().Height(50).Background(Colors.Grey.Lighten1)
@@ -961,25 +953,343 @@ using QuestPDF.Drawing;
                 page.PageColor(Colors.White);
                 page.DefaultTextStyle(x => x.FontSize(12));
 
-                page.Header()
 
-                    .Text("Erklärung und ergebnisse")
-                    .SemiBold().FontSize(36).FontColor(Colors.Blue.Medium);
                 page.Content()
                     .PaddingVertical(1, Unit.Centimetre)
                     .Column(x =>
                     {
-                        x.Item().Text(Placeholders.LoremIpsum());
-
-                        x.Spacing(2);
-
-                        
-                        x.Item().Text(Placeholders.LoremIpsum());
-
-                        x.Item().Image(Placeholders.Image(200, 100));
-                    });
 
 
+                        x.Item().Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+
+                                columns.ConstantColumn(155);
+                                columns.ConstantColumn(760);
+                                columns.ConstantColumn(155);
+                            });
+                            table.Cell().Row(1).Column(1).AlignRight().Text(" stand: ~datum~").SemiBold();
+                            table.Cell().Row(1).Column(2).AlignCenter().Text("Bewertungsbogen Mitarbeiter/in ").FontSize(18).SemiBold();
+                            table.Cell().Row(2).Column(2).AlignCenter().Text("(Sofern mi Folgenden Mitarbeiter genannt sind, sind auch Mitarbeiterinnen gemeint.) ");
+                            table.Cell().RowSpan(2).Column(3).AlignRight().Image("Logo_LoB_IT.bmp");
+
+                        });
+
+
+                        // personen information
+
+                        x.Item().Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                columns.ConstantColumn(105);
+                                columns.ConstantColumn(430);
+                                columns.ConstantColumn(105);
+                                columns.ConstantColumn(430);
+
+                            });
+
+                            table.Cell().Row(1).Column(1).Border(1).Text(" Name:").SemiBold();
+                            table.Cell().Row(2).Column(1).Border(1).Text(" Pnr.:").SemiBold();
+
+                            table.Cell().Row(1).Column(2).Border(1).Text(" ~Name~");
+                            table.Cell().Row(2).Column(2).Border(1).Text(" ~nummer~");
+
+                            table.Cell().Row(1).Column(3).Border(1).Text(" Vorname:").SemiBold();
+                            table.Cell().Row(2).Column(3).Border(1).Text(" Org.-Einheit:").SemiBold();
+
+                            table.Cell().Row(1).Column(4).Border(1).Text(" ~Vorname~");
+                            table.Cell().Row(2).Column(4).Border(1).Text(" ~Einheit~");
+
+
+
+                        });
+
+
+
+                        // personen information
+
+                        x.Item().PaddingTop(50).Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                //muss 8 spalten und mindestenz 3 zeilen haben
+                                columns.ConstantColumn(40);//135,400,135,400
+                                columns.ConstantColumn(415);
+                                columns.ConstantColumn(40);
+                                columns.ConstantColumn(40);
+                                columns.ConstantColumn(40);
+                                columns.ConstantColumn(40);
+                                columns.ConstantColumn(40);
+                                columns.ConstantColumn(415);
+
+                            });
+
+                            table.Cell().Row(1).Column(1);
+                            table.Cell().Row(1).Column(2);
+                            table.Cell().Row(1).Column(3).TranslateX(0).TranslateY(-0).Rotate(270).Unconstrained().Scale(0.85f).Text(" Erwartung\n nicht\n erfüllt");
+                            table.Cell().Row(1).Column(4);
+                            table.Cell().Row(1).Column(5);
+                            table.Cell().Row(1).Column(6);
+                            table.Cell().Row(1).Column(7).TranslateX(0).TranslateY(-0).Rotate(270).Unconstrained().Scale(0.85f).Text(" Erwartung\n deutlich\n übertroffen");
+                            table.Cell().Row(1).Column(8);
+
+
+                            table.Cell().Row(2).Column(1).Border(1).AlignCenter().Text(" Nr.").Bold();
+                            table.Cell().Row(2).Column(2).Border(1).Text("Bewertungskriterium");
+                            table.Cell().Row(2).Column(3).Background(Colors.Grey.Lighten1).Border(1).AlignCenter().Text(" 1").Bold();
+                            table.Cell().Row(2).Column(4).Border(1).AlignCenter().Text(" 2").Bold();
+                            table.Cell().Row(2).Column(5).Border(1).AlignCenter().Text(" 3").Bold();
+                            table.Cell().Row(2).Column(6).Border(1).AlignCenter().Text(" 4").Bold();
+                            table.Cell().Row(2).Column(7).Background(Colors.Grey.Lighten1).Border(1).AlignCenter().Text(" 5").Bold();
+                            table.Cell().Row(2).Column(8).Border(1).Text(" Begründung").Bold();
+
+
+                            table.Cell().Row(3).Column(1).Border(1).AlignCenter().Text(" 1").Bold();
+                            table.Cell().Row(3).Column(2).Border(1).Text(" ~kriterium 1~");
+                            table.Cell().Row(3).Column(3).Background(Colors.Grey.Lighten1).Border(1).Text(" ").Bold();
+                            table.Cell().Row(3).Column(4).Border(1).Text(" ").Bold();
+                            table.Cell().Row(3).Column(5).Border(1).Text(" ").Bold();
+                            table.Cell().Row(3).Column(6).Border(1).Text(" ").Bold();
+                            table.Cell().Row(3).Column(7).Background(Colors.Grey.Lighten1).Border(1).Text(" ").Bold();
+                            table.Cell().Row(3).Column(8).Border(1).Text(" placeholder");
+
+
+                            table.Cell().Row(4).Column(1).Border(1).AlignCenter().Text(" 2").Bold();
+                            table.Cell().Row(4).Column(2).Border(1).Text(" ~kriterium 2~");
+                            table.Cell().Row(4).Column(3).Background(Colors.Grey.Lighten1).Border(1).Text(" ").Bold();
+                            table.Cell().Row(4).Column(4).Border(1).Text(" ").Bold();
+                            table.Cell().Row(4).Column(5).Border(1).Text(" ").Bold();
+                            table.Cell().Row(4).Column(6).Border(1).Text(" ").Bold();
+                            table.Cell().Row(4).Column(7).Background(Colors.Grey.Lighten1).Border(1).Text(" ").Bold();
+                            table.Cell().Row(4).Column(8).Border(1).Text(" placeholder");
+
+                            table.Cell().Row(5).ColumnSpan(4).PaddingTop(15).AlignRight().Text("Summe Leistungsbewertung (Punkte) ").Bold();
+                            table.Cell().Row(5).Column(5).PaddingTop(15).BorderBottom(1).BorderTop(1).BorderLeft(1).AlignRight();
+                            table.Cell().Row(5).Column(6).PaddingTop(15).BorderBottom(1).BorderTop(1).AlignRight();
+                            table.Cell().Row(5).Column(7).PaddingTop(15).BorderBottom(1).BorderTop(1).BorderRight(1).AlignRight();
+                        });
+                        x.Spacing(15);
+
+                        x.Item().Text("Bitte beachten Sie, dass über das oben genannte Ergebnis sowie die Gesprächsinhalte bis zum Abschluss aller Feedbackgespräche in Ihrem Bereich Stillschweigen zu bewahren ist").Bold();
+
+
+
+
+
+
+                        x.Item().PaddingTop(30).Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                //muss 8 spalten und mindestenz 3 zeilen haben
+                                columns.ConstantColumn(180);//135,400,135,400
+                                columns.ConstantColumn(160);
+                                columns.ConstantColumn(180);
+                                columns.ConstantColumn(160);
+                                columns.ConstantColumn(180);
+                                columns.ConstantColumn(180);
+
+
+                            });
+
+
+
+                            table.Cell().Row(1).Column(1).AlignRight().Text(" Datum des Feedbackgesprächs:");
+                            table.Cell().Row(1).Column(2).BorderBottom(1);
+                            table.Cell().Row(1).Column(3).AlignRight().Text(" Unterschrifft Führungskraft:");
+                            table.Cell().Row(1).Column(4).BorderBottom(1);
+                            table.Cell().Row(1).Column(5).AlignRight().Text(" Unterschrifft Mitarbeiter:");
+                            table.Cell().Row(1).Column(6).BorderBottom(1);
+                        });
+
+
+
+
+                        x.Item().PaddingTop(50).Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                //muss 8 spalten und mindestenz 3 zeilen haben
+                                columns.ConstantColumn(50);//135,400,135,400
+                                columns.ConstantColumn(150);
+                                columns.ConstantColumn(240);
+                                columns.ConstantColumn(130);
+                                columns.ConstantColumn(100);
+                                columns.ConstantColumn(100);
+                                columns.ConstantColumn(100);
+                                columns.ConstantColumn(100);
+                                columns.ConstantColumn(100);
+
+                            });
+
+                            table.Cell().Row(1).Column(1).Border(1).Text(" ID").SemiBold();
+                            table.Cell().Row(1).Column(2).Border(1).Text(" Projektbezeichnung").SemiBold();
+                            table.Cell().Row(1).Column(3).Border(1).Text(" Beschreibung").SemiBold();
+                            table.Cell().Row(1).Column(4).Border(1).Text(" Beurteilungszeitraum").SemiBold();
+                            table.Cell().Row(1).Column(5).Border(1).Text(" Finanzvolumen").SemiBold();
+                            table.Cell().Row(1).Column(6).Border(1).Text(" Führungskraft").SemiBold();
+                            table.Cell().Row(1).Column(7).Border(1).Text(" Anzahl\n Beschäftigte").SemiBold();
+                            table.Cell().Row(1).Column(8).Border(1).Text(" Kostenstelle").SemiBold();
+                            table.Cell().Row(1).Column(9).Border(1).Text(" Barcode").SemiBold();
+
+
+                            //Inhalt
+                            // für weiter e zeilen muss row(x) um eins erhöht werden der rest kann genauso bleiben
+
+                            table.Cell().Row(2).Column(1).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(2).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(3).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(4).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(5).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(6).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(7).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(8).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(9).Border(1).Text(" ");
+
+
+                        });
+
+
+
+
+
+                        x.Item().Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                //muss 8 spalten und mindestenz 3 zeilen haben
+                                columns.ConstantColumn(1070);
+
+                            });
+
+                            table.Cell().Row(1).Column(1).Border(1).AlignRight().Hyperlink("https://www.kommSolutions.de").Text(" kommSolutions ").SemiBold().FontSize(16);
+
+
+
+                        });
+
+
+
+                        x.Item().PaddingTop(50).Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                //
+                                columns.ConstantColumn(36);//135,400,135,400
+                                columns.ConstantColumn(76);
+                                columns.ConstantColumn(56);
+                                columns.ConstantColumn(56);
+                                columns.ConstantColumn(128);
+                                columns.ConstantColumn(66);
+                                columns.ConstantColumn(66);
+                                columns.ConstantColumn(66);
+                                columns.ConstantColumn(76);
+                                columns.ConstantColumn(86);
+                                columns.ConstantColumn(40);
+                                columns.ConstantColumn(66);
+                                columns.ConstantColumn(40);
+                                columns.ConstantColumn(40);
+                                columns.ConstantColumn(40);
+                                columns.ConstantColumn(66);
+                                columns.ConstantColumn(66);
+                            });
+
+                            table.Cell().Row(1).Column(1).Border(1).Text(" ID").SemiBold();
+                            table.Cell().Row(1).Column(2).Border(1).Text(" Nachname").SemiBold();
+                            table.Cell().Row(1).Column(3).Border(1).Text(" Vor-\n name").SemiBold();
+                            table.Cell().Row(1).Column(4).Border(1).Text(" Personal-\n nummer").SemiBold();
+                            table.Cell().Row(1).Column(5).Border(1).Text(" Email").SemiBold();
+                            table.Cell().Row(1).Column(6).Border(1).Text(" Projekt").SemiBold();
+                            table.Cell().Row(1).Column(7).Border(1).Text(" Gruppe").SemiBold();
+                            table.Cell().Row(1).Column(8).Border(1).Text(" Entgelt-\n Faktor").SemiBold();
+                            table.Cell().Row(1).Column(9).Border(1).Text(" Arbeitszeit").SemiBold();
+                            table.Cell().Row(1).Column(10).Border(1).Text(" Fachabteilung").SemiBold();
+                            table.Cell().Row(1).Column(11).Border(1).Text(" Durch\n wahl").SemiBold();
+                            table.Cell().Row(1).Column(12).Border(1).Text(" Barcode").SemiBold();
+                            table.Cell().Row(1).Column(13).Border(1).Text(" Frei-\n feld 2").SemiBold();
+                            table.Cell().Row(1).Column(14).Border(1).Text(" Frei-\n feld 3").SemiBold();
+                            table.Cell().Row(1).Column(15).Border(1).Text(" Frei-\n feld 4").SemiBold();
+                            table.Cell().Row(1).Column(16).Border(1).Text(" Beschäftigt\n seit").SemiBold();
+                            table.Cell().Row(1).Column(17).Border(1).Text(" Beschäftigt\n bis").SemiBold();
+
+
+                            //Inhalt
+                            // für weiter e zeilen muss row(x) um eins erhöht werden der rest kann genauso bleiben
+
+                            table.Cell().Row(2).Column(1).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(2).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(3).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(4).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(5).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(6).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(7).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(8).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(9).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(10).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(11).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(12).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(13).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(14).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(15).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(16).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(17).Border(1).Text(" ");
+
+
+                        });
+
+
+
+
+
+
+
+
+
+
+
+
+                        x.Item().PaddingTop(50).Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                //
+                                columns.ConstantColumn(36);//135,400,135,400
+                                columns.ConstantColumn(238);
+                                columns.ConstantColumn(186);
+                                columns.ConstantColumn(116);
+                                columns.ConstantColumn(116);
+                                columns.ConstantColumn(186);
+                                columns.ConstantColumn(96);
+                                columns.ConstantColumn(96);
+                            });
+
+                            table.Cell().Row(1).Column(1).Border(1).Text(" ID").SemiBold();
+                            table.Cell().Row(1).Column(2).Border(1).Text(" Teambezeichnung").SemiBold();
+                            table.Cell().Row(1).Column(3).Border(1).Text(" Messgröße").SemiBold();
+                            table.Cell().Row(1).Column(4).Border(1).Text(" Ziel (100%) ").SemiBold();
+                            table.Cell().Row(1).Column(5).Border(1).Text(" Ergebnis").SemiBold();
+                            table.Cell().Row(1).Column(6).Border(1).Text(" Projekt").SemiBold();
+                            table.Cell().Row(1).Column(7).Border(1).Text(" Gruppe").SemiBold();
+                            table.Cell().Row(1).Column(8).Border(1).Text(" Teammitglieder").SemiBold();
+
+                            //inhalt
+                            table.Cell().Row(2).Column(1).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(2).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(3).Border(1).Text(" ");
+                            table.Cell().Row(2).Column(4).Border(1).Text(" ").SemiBold();
+                            table.Cell().Row(2).Column(5).Border(1).Text(" ").SemiBold();
+                            table.Cell().Row(2).Column(6).Border(1).Text(" ").SemiBold();
+                            table.Cell().Row(2).Column(7).Border(1).Text(" ").SemiBold();
+                            table.Cell().Row(2).Column(8).Border(1).Text(" ").SemiBold();
+
+
+
+
+                        });
+
+                        x.Item().Text("Teamzieluebericht");
 
 
 
@@ -994,6 +1304,23 @@ using QuestPDF.Drawing;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        });
 
 
                 page.Footer()
@@ -1013,21 +1340,6 @@ using QuestPDF.Drawing;
     .GeneratePdf("03_zusammenfassung_quer.pdf");
     
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
